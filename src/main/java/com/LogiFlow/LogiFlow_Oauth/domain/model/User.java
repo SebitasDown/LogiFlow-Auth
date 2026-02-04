@@ -1,5 +1,7 @@
 package com.LogiFlow.LogiFlow_Oauth.domain.model;
 
+import java.time.LocalDateTime;
+
 public class User {
     private Long id;
     private String fullName;
@@ -10,6 +12,9 @@ public class User {
     private String avatarUrl;
     private String avatarColor;
     private Status status;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
 
     public User() {
     }
