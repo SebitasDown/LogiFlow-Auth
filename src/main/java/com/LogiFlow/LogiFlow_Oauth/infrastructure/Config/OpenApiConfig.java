@@ -16,8 +16,7 @@ import java.util.List;
 @Configuration
 public class OpenApiConfig {
 
-    // todo: Añadir
-    private static  final String SECURITY_SCHEME_NAME = "";
+    private static final String SECURITY_SCHEME_NAME = "bearerAuth";
 
     // Configuracion de swagger
     @Bean
@@ -29,14 +28,13 @@ public class OpenApiConfig {
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("LogiFlow team")
-                                .email("*"))
+                                .email("contact@logiflow.com"))
                         .license(new License()
                                 .name("Licencia Privada")
                                 .url("https://LogiFlow.com/license")))
                 .servers(List.of(
                         new Server().url("/").description("Servidor actual"),
-                        new Server().url("http://localhost:8080").description("Local"),
-                        new Server().url("*").description("Producción")))
+                        new Server().url("http://localhost:8080").description("Local")))
                 .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
                 .components(new Components()
                         .addSecuritySchemes(SECURITY_SCHEME_NAME,

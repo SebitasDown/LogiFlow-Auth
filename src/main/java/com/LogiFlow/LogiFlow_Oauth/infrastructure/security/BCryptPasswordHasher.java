@@ -2,21 +2,22 @@ package com.LogiFlow.LogiFlow_Oauth.infrastructure.security;
 
 import com.LogiFlow.LogiFlow_Oauth.domain.port.out.PasswordHasher;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class BCryptPasswordHasher implements PasswordHasher {
 
-    private final BCryptPasswordHasher encoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public String hash(String password) {
-        return encoder.hash(password);
+        return passwordEncoder.encode(password);
     }
 
     @Override
     public boolean matches(String password, String hashedPassword) {
-        return encoder.matches(password, hashedPassword);
+        return passwordEncoder.matches(password, hashedPassword);
     }
 }

@@ -3,6 +3,7 @@ package com.LogiFlow.LogiFlow_Oauth.infrastructure.port.in.web.controller;
 import com.LogiFlow.LogiFlow_Oauth.domain.port.in.auth.AuthResult;
 import com.LogiFlow.LogiFlow_Oauth.domain.port.in.auth.LoginUserUseCase;
 import com.LogiFlow.LogiFlow_Oauth.domain.port.in.auth.RegisterUserUseCase;
+import com.LogiFlow.LogiFlow_Oauth.infrastructure.port.in.web.dto.request.LoginRequest;
 import com.LogiFlow.LogiFlow_Oauth.infrastructure.port.in.web.dto.request.RegisterRequest;
 import com.LogiFlow.LogiFlow_Oauth.infrastructure.port.in.web.dto.response.AuthResponse;
 import com.LogiFlow.LogiFlow_Oauth.infrastructure.port.in.web.mapper.AuthDtoMapper;
@@ -62,15 +63,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
         AuthResult result = registerUserUseCase.register(
-                request.getDisplayName(),
+                request.getFullName(),
                 request.getEmail(),
-                request.getPassword(),
-                request.getWeight(),
-                request.getHeight(),
-                request.getAge(),
-                request.getPreference(),
-                request.getMeals(),
-                request.getGoal(),
-                request.getActivityLevel());
+                request.getPassword());
         return ResponseEntity.ok(authDtoMapper.toDto(result));
-    }}
+    }
+}
